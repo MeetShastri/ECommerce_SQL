@@ -9,6 +9,7 @@ const jwt = require ('jsonwebtoken');
 const blacklist = [];
 module.exports = {
 
+  //Endpoint for registering the user
   registerUser: async(req, res) => {
     const {firstName, lastName, email, password} = req.body;
 
@@ -54,6 +55,7 @@ module.exports = {
     }
   },
 
+  //Endpoint for user login
   loginUser: async(req,res) => {
     const {email, password} = req.body;
     const loginUserQuery = 'SELECT * FROM User WHERE email = $1';
@@ -86,6 +88,8 @@ module.exports = {
       });
     }
   },
+
+  //Endpoint for user logout
   userLogout: async function(req, res) {
     const token = req.headers.authorization.split(' ')[1];
     blacklist.push(token);
@@ -108,7 +112,7 @@ module.exports = {
     }
   },
 
-  //API for getting the user by id
+  //Endpoint for getting the user by id
   getUserById: async(req, res) => {
     const id = req.params.userid;
     const getUserQuery = 'SELECT * FROM User WHERE id = $1';
@@ -127,7 +131,7 @@ module.exports = {
     }
   },
 
-  //API for updating the existing user
+  //Endpoint for updating the existing user
   updateUser: async(req,res) => {
     const id = req.params.userid;
     const {firstName, email} = req.body;
@@ -159,7 +163,7 @@ module.exports = {
     }
   },
 
-  //API used for reset the user password
+  //Endpoint used for reset the user password
   resetUserPassword: async(req,res) => {
     const {email, oldpassword, newpassword} = req.body;
     const findUserQuery = 'SELECT * FROM User WHERE email = $1';

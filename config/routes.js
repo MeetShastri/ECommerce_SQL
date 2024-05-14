@@ -10,6 +10,7 @@
 
 module.exports.routes = {
 
+  //Routes for User Controller
   'POST /users/registeruser' : 'UserController.registerUser',
   'POST /users/loginuser' : 'UserController.loginUser',
   'POST /users/logout' : 'UserController.userLogout',
@@ -17,12 +18,14 @@ module.exports.routes = {
   'GET /users/getuserbyid/:userid' : 'UserController.getUserById',
   'PATCH /users/updateuser/:userid' : 'UserController.updateUser',
 
+  //Routes for Category Controller
   'POST /categories/addcategory' : 'CategoryController.addCategory',
   'GET /categories/getallcategories' : 'CategoryController.getAllCategories',
   'GET /categories/getcategory/:categoryid' : 'CategoryController.getCategory',
   'PATCH /categories/updatecategory/:categoryid' : 'CategoryController.updateCategory',
   'DELETE /categories/deletecategory/:categoryid' : 'CategoryController.deleteCategory',
 
+  //Routes for Product Controller
   'POST /products/addproduct' : 'ProductController.addProduct',
   'GET /products/getproductbycategory/:categoryid' : 'ProductController.getProductByCategory',
   'GET /products/getproductbyproduct/:productid' : 'ProductController.getProductByProductId',
@@ -31,6 +34,7 @@ module.exports.routes = {
   'GET /products/searchproduct/' : 'ProductController.searchProduct',
 
 
+  //Routes for Cart Controller
   'POST /cart/addtocart' : 'CartController.addToCart',
   'GET /cart/cartwithproduct/:userid' : 'CartController.getUsersCart',
   'PATCH /cart/quantityofproduct/:cartid' : 'CartController.updateQuantityOfProduct',

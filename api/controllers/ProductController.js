@@ -8,6 +8,7 @@
 module.exports = {
 
 
+  //Endpoint for adding the product
   addProduct: async(req, res) => {
     const {title, description, category, price, stockquantity, manufacturer, review} = req.body;
     if(!title || !description || !category || !price || !stockquantity || !manufacturer || !review){
@@ -46,6 +47,7 @@ module.exports = {
     }
   },
 
+  //Endpoint for getting product by category
   getProductByCategory: async(req,res) => {
     const id = req.params.categoryid;
     const findProductByCategoryIdQuery = `SELECT p.*, c.name AS category_name, c.type AS category_type, c.description AS category_description
@@ -82,6 +84,7 @@ module.exports = {
     }
   },
 
+  //Endpoint for getting product by id
   getProductByProductId: async(req, res) => {
     const id = req.params.productid;
     const findProductByProductIdQuery = `SELECT p.*, c.name AS category_name, c.type AS category_type, c.description AS category_description
@@ -115,8 +118,9 @@ module.exports = {
     return res.json(productWithCategory);
   },
 
+  //Endpoint for updating the product
   updateProduct: async(req, res) => {
-    const id = req.params.productid;
+    const id = req.params.productid;  
     const {title, description, price, stockquantity, manufacturer, review} = req.body;
     let updateProductQuery = 'UPDATE Product SET ';
     const updateProductParams = [];
@@ -163,6 +167,7 @@ module.exports = {
     }
   },
 
+  //Endpoint for deleting the product
   deleteProduct: async(req, res) => {
     const id = req.params.productid;
     const findProductQuery = 'SELECT * FROM Product WHERE id = $1';
@@ -184,6 +189,7 @@ module.exports = {
     }
   },
 
+  //Endpoint for searching the product
   searchProduct: async(req, res) => {
     const searchTerm = req.param('q');
     const searchProductQuery = await sails.sendNativeQuery(`SELECT * FROM Product WHERE title LIKE '%${searchTerm}%' OR description LIKE '%${searchTerm}%'`);

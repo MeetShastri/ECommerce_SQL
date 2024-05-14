@@ -7,6 +7,7 @@
 
 module.exports = {
 
+  //Endpoint for adding product to cart
   addToCart: async(req, res) => {
     const {user, product, vendorid, quantity} = req.body;
     if(!user || !product || !vendorid || !quantity){
@@ -82,6 +83,7 @@ module.exports = {
     }
   },
 
+  //Endpoint for updating the quantity of product
   updateQuantityOfProduct: async(req, res) => {
     const id = req.params.cartid;
     const {quantity} = req.body;
@@ -99,6 +101,7 @@ module.exports = {
     }
   },
 
+  //Endpoint for deleting the product from cart
   deleteProductFromCart: async(req, res) => {
     const id = req.params.cartid;
     const findProductQuery = 'SELECT * FROM Cart WHERE id = $1';

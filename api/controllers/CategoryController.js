@@ -7,7 +7,7 @@
 
 module.exports = {
 
-
+  //Endpoint for adding the category
   addCategory: async(req, res) => {
     const {name, type, description } = req.body;
     if(!name || !type || !description){
@@ -44,6 +44,7 @@ module.exports = {
     }
   },
 
+  //Endpoint for getting all categories
   getAllCategories: async(req, res) => {
     const getCategoryQuery = 'SELECT * FROM Category';
     const getCategoryResult = await sails.sendNativeQuery(getCategoryQuery);
@@ -78,6 +79,7 @@ module.exports = {
     }
   },
 
+  //Endpoint for updating the category
   updateCategory: async(req, res) => {
     const id = req.params.categoryid;
     const {name, type, description} = req.body;
@@ -117,7 +119,8 @@ module.exports = {
     }
   },
 
-  deleteCategory: async(req, res) => {
+  //Endpoint for deleting the category
+  deleteCategory: async(req, res)  => {
     const id = req.params.categoryid;
     const getDeletedCategoryQuery = 'SELECT * FROM Category WHERE id = $1';
     const getDeletedCategoryParams = [id];
